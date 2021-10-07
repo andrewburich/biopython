@@ -26,13 +26,11 @@ from Bio import SeqIO
 
 
 
-
-
 def function(data, output, beginning, end):
     data = str(data)
     output = str(output)
-    beginning = str(beginning) 
-    end = str(end)
+    beginning = str.upper(beginning) 
+    end = str.upper(end)
     
     os.chdir(output)
 
@@ -57,19 +55,28 @@ def function(data, output, beginning, end):
       
       # Next, locate sub-region by finding index values of beginning/end of region
       # Line below is equivilent to -- a[begin_index_value:end_index_value]
-      sub_section = a[a.find(beginning)+len(beginning):a.rfind(end)]
+      # why does it say rfind??
+      if a.find(beginning) != -1 and a.find(end) != -1:
+          sub_section = a[a.find(beginning)+len(beginning):a.rfind(end)]
       # Add beginning and end strings to the selected region
-      out = beginning + sub_section + end
+          out = beginning + sub_section + end
       
       # Re-insert first line of fasta file for output
-      combined = firstLine + out
+          combined = firstLine + out
       
       # Variable naming, file name = "Region" plus desired chunk of original file name
       # To change variable naming, adjust the indexing [4:], selects subset of original file name
       #### "text_file" looks like: "Region_v12_HG00171_hgsvc_pbsq2-clr_1000-flye.h1-un.arrow-p1.fasta" ####
-      text_file = open("Region{}".format(i[4:]), "w")
-      text_file.write(combined)
-      text_file.close()
+          text_file = open("Region{}".format(i[4:]), "w")
+          text_file.write(combined)
+          text_file.close()
+          
+      if a.find(beginning) == -1 or a.find(end) == -1:
+          out_file = firstLine + 'region not found'
+          text_file = open("Empty_Region{}".format(i[4:]), "w")
+          text_file.write(out_file)
+          text_file.close()
+          
       
 function(sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4])
 
