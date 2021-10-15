@@ -113,6 +113,7 @@ def function(data, output, beginning, end):
 	b_down = 'Break down of data:\n' + str(num_files) + ' files entered.\nThe start and end sequences or their reverse complements were found in ' + str(percent_found) + '% of the files.\n' + str(percent_original_found) + '% contained the original start and end sequences.\n' + str(percent_rc_found) + '% contained the reverse complement of the sequences.\n\n\nFiles not containing original sequences or their reverse complements:\n'                         
 	for i in not_found_list:
 		b_down+='\n'+str(i)
+	os.chdir('..')
 	break_down = open('analysis.txt','w+')
 	break_down.write(b_down)
 		  
