@@ -123,7 +123,7 @@ def function(data, output, beginning, end):
 	percent_rc_found = (rc_found/num_files) * 100
 	percent_rc_found = "{:.1f}".format(percent_rc_found)
 
-	if len(len_seqs) > 0:
+	if percent_found > 0:
 		shortest_seq = min(len_seqs)
 		short_sq_index = len_seqs.index(shortest_seq)
 		longest_seq = max(len_seqs)
