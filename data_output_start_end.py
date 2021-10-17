@@ -117,6 +117,7 @@ def function(data, output, beginning, end):
 	shortest_seq = min(len_seqs)
 	longest_seq = max(len_seqs)
 	avg_seq = sum(len_seqs)/len(len_seqs)
+	avg_seq = "{:.0f}".format(avg_seq)
 
 	b_down = 'Break down of data:\n' + str(num_files) + ' files entered.\nThe start and end sequences or their reverse complements were found in ' + str(percent_found) + '% of the files.\n' + str(percent_original_found) + '% contained the original start and end sequences.\n' + str(percent_rc_found) + '% contained the reverse complement of the sequences.\nThe average length of the subsections found is ' + str(avg_seq) + ' characters\nThe shortest subsection found is ' + str(shortest_seq) + ' characters long, and the longest found is ' + str(longest_seq) + ' characters long.\n\n\nFiles not containing original sequences or their reverse complements:\n'                         
 	for i in not_found_list:
