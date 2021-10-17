@@ -112,35 +112,68 @@ def function(data, output, beginning, end):
 	  #    text_file.write(out_file)
 	  #    text_file.close()
 
+	if num_found > 0:
+	  file_len_tuple = list(zip(len_seqs,len_seq_fnames))
+	  num_files = len(file_list)
+	  percent_found_num = (num_found/num_files) * 100
+	  percent_found = "{:.1f}".format(percent_found_num)
+	  percent_original_found = (orig_found/num_files) * 100
+	  percent_original_found = "{:.1f}".format(percent_original_found)
+	  percent_rc_found = (rc_found/num_files) * 100
+	  percent_rc_found = "{:.1f}".format(percent_rc_found)
+	  shortest_seq = min(len_seqs)
+	  short_sq_index = len_seqs.index(shortest_seq)
+	  longest_seq = max(len_seqs)
+	  long_sq_index = len_seqs.index(longest_seq)
+	  avg_seq = sum(len_seqs)/len(len_seqs)
+	  avg_seq = "{:.0f}".format(avg_seq)
+
+	  b_down = 'Break down of data:\n' + str(num_files) + ' files entered.\nThe start and end sequences or their reverse complements were found in ' + str(percent_found) + '% of the files.\n' + str(percent_original_found) + '% contained the original start and end sequences.\n' + str(percent_rc_found) + '% contained the reverse complement of the sequences.\nThe average length of the subsections found is ' + str(avg_seq) + ' characters\nThe shortest subsection found is ' + str(shortest_seq) + ' characters long, and the longest found is ' + str(longest_seq) + ' characters long.'                         
+	  b_down += '\nFile containing the shortest sequence: ' + str(file_len_tuple[short_sq_index][1]) + '\nFile containing the longest sequence: ' + str(file_len_tuple[long_sq_index][1])
+
+	  if len(not_found_list)>0:
+	    b_down+= '\n\n\nFiles not containing original sequences or their reverse complements:'
+		  for i in not_found_list:
+		    b_down+='\n'+str(i)
+	  os.chdir('..')
+	  break_down = open('analysis.txt','w+')
+	  break_down.write(b_down)
+	else:
+	  break_down = open('nothing_found.txt','w+')
+	  break_down.write('Your sequences were not found in any of the files.')
 
 
-	file_len_tuple = list(zip(len_seqs,len_seq_fnames))
-	num_files = len(file_list)
-	percent_found_num = (num_found/num_files) * 100
-	percent_found = "{:.1f}".format(percent_found_num)
-	percent_original_found = (orig_found/num_files) * 100
-	percent_original_found = "{:.1f}".format(percent_original_found)
-	percent_rc_found = (rc_found/num_files) * 100
-	percent_rc_found = "{:.1f}".format(percent_rc_found)
 
-	if percent_found_num > 0:
-		shortest_seq = min(len_seqs)
-		short_sq_index = len_seqs.index(shortest_seq)
-		longest_seq = max(len_seqs)
-		long_sq_index = len_seqs.index(longest_seq)
-		avg_seq = sum(len_seqs)/len(len_seqs)
-		avg_seq = "{:.0f}".format(avg_seq)
-
-	b_down = 'Break down of data:\n' + str(num_files) + ' files entered.\nThe start and end sequences or their reverse complements were found in ' + str(percent_found) + '% of the files.\n' + str(percent_original_found) + '% contained the original start and end sequences.\n' + str(percent_rc_found) + '% contained the reverse complement of the sequences.\nThe average length of the subsections found is ' + str(avg_seq) + ' characters\nThe shortest subsection found is ' + str(shortest_seq) + ' characters long, and the longest found is ' + str(longest_seq) + ' characters long.'                         
-	b_down += '\nFile containing the shortest sequence: ' + str(file_len_tuple[short_sq_index][1]) + '\nFile containing the longest sequence: ' + str(file_len_tuple[long_sq_index][1])
-
-	if len(not_found_list)>0:
-		b_down+= '\n\n\nFiles not containing original sequences or their reverse complements:'
-		for i in not_found_list:
-			b_down+='\n'+str(i)
-	os.chdir('..')
-	break_down = open('analysis.txt','w+')
-	break_down.write(b_down)
+	  
+	
 		  
 	  
 function(sys.argv[1],sys.argv[2],sys.argv[3],sys.argv[4])
+
+
+# file_len_tuple = list(zip(len_seqs,len_seq_fnames))
+# 	num_files = len(file_list)
+# 	percent_found_num = (num_found/num_files) * 100
+# 	percent_found = "{:.1f}".format(percent_found_num)
+# 	percent_original_found = (orig_found/num_files) * 100
+# 	percent_original_found = "{:.1f}".format(percent_original_found)
+# 	percent_rc_found = (rc_found/num_files) * 100
+# 	percent_rc_found = "{:.1f}".format(percent_rc_found)
+
+# 	shortest_seq = min(len_seqs)
+# 	short_sq_index = len_seqs.index(shortest_seq)
+# 	longest_seq = max(len_seqs)
+# 	long_sq_index = len_seqs.index(longest_seq)
+# 	avg_seq = sum(len_seqs)/len(len_seqs)
+# 	avg_seq = "{:.0f}".format(avg_seq)
+
+# 	b_down = 'Break down of data:\n' + str(num_files) + ' files entered.\nThe start and end sequences or their reverse complements were found in ' + str(percent_found) + '% of the files.\n' + str(percent_original_found) + '% contained the original start and end sequences.\n' + str(percent_rc_found) + '% contained the reverse complement of the sequences.\nThe average length of the subsections found is ' + str(avg_seq) + ' characters\nThe shortest subsection found is ' + str(shortest_seq) + ' characters long, and the longest found is ' + str(longest_seq) + ' characters long.'                         
+# 	b_down += '\nFile containing the shortest sequence: ' + str(file_len_tuple[short_sq_index][1]) + '\nFile containing the longest sequence: ' + str(file_len_tuple[long_sq_index][1])
+
+# 	if len(not_found_list)>0:
+# 		b_down+= '\n\n\nFiles not containing original sequences or their reverse complements:'
+# 		for i in not_found_list:
+# 			b_down+='\n'+str(i)
+# 	os.chdir('..')
+# 	break_down = open('analysis.txt','w+')
+# 	break_down.write(b_down)
