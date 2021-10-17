@@ -133,8 +133,8 @@ def function(data, output, beginning, end):
 
 	  if len(not_found_list)>0:
 	    b_down+= '\n\n\nFiles not containing original sequences or their reverse complements:'
-		  for i in not_found_list:
-		    b_down+='\n'+str(i)
+		for i in not_found_list:
+		  b_down+='\n'+str(i)
 	  os.chdir('..')
 	  break_down = open('analysis.txt','w+')
 	  break_down.write(b_down)
