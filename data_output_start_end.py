@@ -123,12 +123,13 @@ def function(data, output, beginning, end):
 	percent_rc_found = (rc_found/num_files) * 100
 	percent_rc_found = "{:.1f}".format(percent_rc_found)
 
-	shortest_seq = min(len_seqs)
-	short_sq_index = len_seqs.index(shortest_seq)
-	longest_seq = max(len_seqs)
-	long_sq_index = len_seqs.index(longest_seq)
-	avg_seq = sum(len_seqs)/len(len_seqs)
-	avg_seq = "{:.0f}".format(avg_seq)
+	if len(len_seqs) > 0:
+		shortest_seq = min(len_seqs)
+		short_sq_index = len_seqs.index(shortest_seq)
+		longest_seq = max(len_seqs)
+		long_sq_index = len_seqs.index(longest_seq)
+		avg_seq = sum(len_seqs)/len(len_seqs)
+		avg_seq = "{:.0f}".format(avg_seq)
 
 	b_down = 'Break down of data:\n' + str(num_files) + ' files entered.\nThe start and end sequences or their reverse complements were found in ' + str(percent_found) + '% of the files.\n' + str(percent_original_found) + '% contained the original start and end sequences.\n' + str(percent_rc_found) + '% contained the reverse complement of the sequences.\nThe average length of the subsections found is ' + str(avg_seq) + ' characters\nThe shortest subsection found is ' + str(shortest_seq) + ' characters long, and the longest found is ' + str(longest_seq) + ' characters long.'                         
 	b_down += '\nFile containing the shortest sequence: ' + str(file_len_tuple[short_sq_index][1]) + '\nFile containing the longest sequence: ' + str(file_len_tuple[long_sq_index][1])
