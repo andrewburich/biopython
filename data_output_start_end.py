@@ -139,6 +139,7 @@ def function(data, output, beginning, end):
 	  break_down = open('analysis.txt','w+')
 	  break_down.write(b_down)
 	else:
+	  os.chdir('..')
 	  break_down = open('nothing_found.txt','w+')
 	  break_down.write('Your sequences were not found in any of the files.')
 
