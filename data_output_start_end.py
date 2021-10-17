@@ -32,6 +32,8 @@ def function(data, output, beginning, end):
 	orig_found=0
 	rc_found=0
 
+	len_seqs = []
+
 	for i in file_list:
 	  #### "i" looks like: "Left_v12_HG00171_hgsvc_pbsq2-clr_1000-flye.h1-un.arrow-p1.fasta" ####
 	
@@ -53,6 +55,7 @@ def function(data, output, beginning, end):
 	  # why does it say rfind??
 	  if a.find(beginning) != -1 and a.find(end) != -1:
 		  sub_section = a[a.find(beginning)+len(beginning):a.rfind(end)]
+		  len_seqs.append(len(sub_section))
 	  # Add beginning and end strings to the selected region
 		  out = beginning + sub_section + end
 	  
@@ -75,6 +78,7 @@ def function(data, output, beginning, end):
 		  if rc_genome.find(beginning) != -1 and rc_genome.find(end) != -1:
 			  rc_sub_section = rc_genome[rc_genome.find(beginning)+len(beginning):rc_genome.rfind(end)]
 			  rc_sub_section = str(rc_sub_section)
+			  len_seqs.append(len(rc_sub_section))
 			  rc_out = beginning + rc_sub_section + end
 	  # Re-insert first line of fasta file for output
 			  rc_combined = firstLine + rc_out
@@ -110,7 +114,11 @@ def function(data, output, beginning, end):
 	percent_rc_found = (rc_found/num_files) * 100
 	percent_rc_found = "{:.1f}".format(percent_rc_found)
 
-	b_down = 'Break down of data:\n' + str(num_files) + ' files entered.\nThe start and end sequences or their reverse complements were found in ' + str(percent_found) + '% of the files.\n' + str(percent_original_found) + '% contained the original start and end sequences.\n' + str(percent_rc_found) + '% contained the reverse complement of the sequences.\n\n\nFiles not containing original sequences or their reverse complements:\n'                         
+	shortest_seq = min(len_seqs)
+	longest_seq = max(len_seqs)
+	avg_seq = sum(len_seqs)/len(len_seqs)
+
+	b_down = 'Break down of data:\n' + str(num_files) + ' files entered.\nThe start and end sequences or their reverse complements were found in ' + str(percent_found) + '% of the files.\n' + str(percent_original_found) + '% contained the original start and end sequences.\n' + str(percent_rc_found) + '% contained the reverse complement of the sequences.\nThe average length of the subsections found is ' + str(avg_seq) + ' characters\nThe shortest subsection found is ' + str(shortest_seq) + ' characters long, and the longest found is ' + str(longest_seq) + ' characters long.\n\n\nFiles not containing original sequences or their reverse complements:\n'                         
 	for i in not_found_list:
 		b_down+='\n'+str(i)
 	os.chdir('..')
