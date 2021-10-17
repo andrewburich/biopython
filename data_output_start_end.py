@@ -141,7 +141,7 @@ def function(data, output, beginning, end):
 	else:
 	  os.chdir('..')
 	  break_down = open('nothing_found.txt','w+')
-	  break_down.write('Your sequences were not found in any of the files.')
+	  break_down.write('Neither the sequences entered nor their reverse complements were found in any of the files.')
 
 
 
