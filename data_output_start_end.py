@@ -116,14 +116,14 @@ def function(data, output, beginning, end):
 
 	file_len_tuple = list(zip(len_seqs,len_seq_fnames))
 	num_files = len(file_list)
-	percent_found = (num_found/num_files) * 100
-	percent_found = "{:.1f}".format(percent_found)
+	percent_found_num = (num_found/num_files) * 100
+	percent_found = "{:.1f}".format(percent_found_num)
 	percent_original_found = (orig_found/num_files) * 100
 	percent_original_found = "{:.1f}".format(percent_original_found)
 	percent_rc_found = (rc_found/num_files) * 100
 	percent_rc_found = "{:.1f}".format(percent_rc_found)
 
-	if int(percent_found) > 0:
+	if percent_found_num > 0:
 		shortest_seq = min(len_seqs)
 		short_sq_index = len_seqs.index(shortest_seq)
 		longest_seq = max(len_seqs)
