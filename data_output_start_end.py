@@ -126,7 +126,7 @@ def function(data, output, beginning, end):
 	shortest_seq = min(len_seqs)
 	short_sq_index = len_seqs.index(shortest_seq)
 	longest_seq = max(len_seqs)
-	long_sq_index = len_segs.index(longest_seq)
+	long_sq_index = len_seqs.index(longest_seq)
 	avg_seq = sum(len_seqs)/len(len_seqs)
 	avg_seq = "{:.0f}".format(avg_seq)
 
