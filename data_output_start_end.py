@@ -8,7 +8,7 @@ Created on Thu Oct  7 09:24:27 2021
 
 
 # add forwards or backwards orientation as function input
-# count # of files not found, write name of files 
+# count number of files not found, write name of files 
 
 
 import sys
