@@ -159,7 +159,7 @@ def concatFolder(folder_path):
 
 
 	# ASSIGN THE "combined_out" VARIABLE TO THE NAME OF YOUR CHOICE
-	combined_out = '/content/concat_my_region_files.fasta'
+	combined_out = '/content/biopython/concat_my_region_files.fasta'
 	combined_out_file = open(combined_out, "w")
 	combined_out_file.write(new_file)
 	combined_out_file.close()
