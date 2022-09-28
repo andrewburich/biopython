@@ -137,6 +137,8 @@ def function(data, output, beginning, end):
 	
 # USE THIS FUNCTION TO CREATE A FILE CONTAINING ALL OUTPUT DATA CONACATENATED:
 def concatFolder(folder_path):
+	os.chdir(folder_path)
+	os.chdir('..')
 	file_list = os.listdir(folder_path)
 	new_file = ''
 	for i in file_list:
@@ -159,7 +161,7 @@ def concatFolder(folder_path):
 
 
 	# ASSIGN THE "combined_out" VARIABLE TO THE NAME OF YOUR CHOICE
-	combined_out = '/content/biopython/concat_my_region_files.fasta'
+	combined_out = 'concat_my_region_files.fasta'
 	combined_out_file = open(combined_out, "w")
 	combined_out_file.write(new_file)
 	combined_out_file.close()
